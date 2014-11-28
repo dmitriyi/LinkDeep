@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>LinkDeep Config File</comment>
+<entry key="screenShotPath">C:\LinkDeep\Screenshots</entry>
+<entry key="authSearch">true</entry>
+<entry key="movieID">21274</entry>
+<entry key="authHelp">true</entry>
+<entry key="pacadgeID">21274</entry>
+<entry key="autoDismiss">true</entry>
+<entry key="titleID">0307F90B</entry>
+<entry key="scenario">All</entry>
+<entry key="ip">192.168.1.62</entry>
+<entry key="kill">true</entry>
+<entry key="tvSeriesID">19334</entry>
+<entry key="authPlayback">true</entry>
+<entry key="authDefault">true</entry>
+<entry key="tvEpisodeID">19334</entry>
+<entry key="authDetails">true</entry>
+<entry key="authSettings">true</entry>
+</properties>

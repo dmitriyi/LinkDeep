@@ -79,11 +79,11 @@ public class ExcellParser {
 	  }
 	  
 	  
-	  public static void main(String[] args) throws IOException {
-		ExcellParser test = new ExcellParser();
-	    test.setInputFile("C:\\Users\\Dmitriy Ignatov\\Desktop\\Java\\JLinkDeep\\Copy of PBS_Deeplinks.xls");
-//	    test.read();
-	    test.sheets();
-	    
-	  }
+//	  public static void main(String[] args) throws IOException {
+//		ExcellParser test = new ExcellParser();
+//	    test.setInputFile("C:\\Users\\Dmitriy Ignatov\\Desktop\\Java\\JLinkDeep\\Copy of PBS_Deeplinks.xls");
+////	    test.read();
+//	    test.sheets();
+//	    
+//	  }
 }

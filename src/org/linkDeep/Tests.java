@@ -9,7 +9,7 @@ public class Tests {
 	
 	public String connect (String ip) throws Exception{
 		String command = adkAddress + " && xbconnect " + ip;
-		executeCmd(command);
+//		executeCmd(command);
 		return command;
 	}
 	
@@ -25,8 +25,9 @@ public class Tests {
 		executeCmd(command);
 	}
 	
-	public void killSwitch (String packegenumber){
+	public String killSwitch (String packegenumber){
 		String command = adkAddress + " && xbapp terminate " + packegenumber;
+		return command;
 //		xbapp terminate %packege%
 	}
 	

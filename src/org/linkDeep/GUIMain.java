@@ -19,22 +19,25 @@ import javax.swing.JCheckBox;
 import java.awt.Component;
 
 import javax.swing.Box;
-
-import java.awt.Checkbox;
-
 import javax.swing.JRadioButton;
 
 import java.awt.Font;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.InvalidPropertiesFormatException;
+import java.awt.Color;
 
 public class GUIMain extends JFrame implements ActionListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6052531125585852071L;
+
 	Parameters param = new Parameters();
-	
+
 	JPanel panelSettings = new JPanel();
-	
+
 	private boolean kill;
 	private String ip;
 	private String titleID;
@@ -51,8 +54,16 @@ public class GUIMain extends JFrame implements ActionListener {
 	private boolean authHelp;
 	private boolean authPlayback;
 	private boolean authSearch;
+	@SuppressWarnings("unused")
 	private String errors = "";
 	
+	private final String ERR_IP = "Title ID is not entered!";
+	private final String ERR_TITLE = "Title ID is not entered!";
+	private final String ERR_MEDIA_ID = "One or more Media IDs are required!";
+	private final String ERR_AUTH = "Select Authorities to Test!";
+	private final String ERR_PACK = "Cannot Terminate if no Package ID ";
+	
+
 	JLabel lblSettings = new JLabel("Settings");
 	JLabel lblError = new JLabel(" ");
 	JCheckBox chckbxKillswitch;
@@ -79,7 +90,7 @@ public class GUIMain extends JFrame implements ActionListener {
 	JCheckBox chckbxMediaPlayback;
 	JCheckBox chckbxSettings;
 	JCheckBox chckbxSearch;
-	ButtonGroup testGroup = new ButtonGroup(); //Scenarios Button Group
+	ButtonGroup testGroup = new ButtonGroup(); // Scenarios Button Group
 	JRadioButton rdbtnAll = new JRadioButton("All");
 	JRadioButton rdbtnValidOnly = new JRadioButton("Valid Only");
 	JRadioButton rdbtnInvalidOnly = new JRadioButton("Invalid Only");
@@ -100,7 +111,7 @@ public class GUIMain extends JFrame implements ActionListener {
 
 	private void retriveParam() throws InvalidPropertiesFormatException,
 			IOException {
-		
+
 		param.loadParam();
 		kill = param.isKill();
 		ip = param.getIp();
@@ -123,7 +134,8 @@ public class GUIMain extends JFrame implements ActionListener {
 
 	private void settingsFrame() {
 		GridBagLayout gbl_panel1 = new GridBagLayout();
-		gbl_panel1.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel1.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+				0, 0 };
 		gbl_panel1.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, 1.0,
 				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		panelSettings.setLayout(gbl_panel1);
@@ -137,13 +149,13 @@ public class GUIMain extends JFrame implements ActionListener {
 		gbc_lblSettings.gridx = 4;
 		gbc_lblSettings.gridy = 1;
 		panelSettings.add(lblSettings, gbc_lblSettings);
-		
 
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.gridwidth = 2;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNewLabel.gridx = 4;
 		gbc_lblNewLabel.gridy = 2;
+		lblError.setForeground(Color.RED);
 		panelSettings.add(lblError, gbc_lblNewLabel);
 
 		// Strut
@@ -155,7 +167,7 @@ public class GUIMain extends JFrame implements ActionListener {
 		panelSettings.add(horizontalStrut, gbc_horizontalStrut);
 
 		// Kill The App After test Checkbox
-		chckbxKillswitch = new JCheckBox("Kill App After Test?", kill);
+		chckbxKillswitch = new JCheckBox("Terminate App After Test?", kill);
 		GridBagConstraints gbc_chckbxKillswitch = new GridBagConstraints();
 		gbc_chckbxKillswitch.gridwidth = 11;
 		gbc_chckbxKillswitch.anchor = GridBagConstraints.NORTHWEST;
@@ -302,7 +314,7 @@ public class GUIMain extends JFrame implements ActionListener {
 		gbc_txtScreenshotpath.gridy = 10;
 		panelSettings.add(txtScreenshotpath, gbc_txtScreenshotpath);
 
-		//Dismiss Errors Automatically checkbox
+		// Dismiss Errors Automatically checkbox
 		chckbxDismissErrorsAutomatically = new JCheckBox(
 				"Dismiss Errors automatically", autoDismiss);
 		GridBagConstraints gbc_chckbxDissmissErrorsAutomatically = new GridBagConstraints();
@@ -314,7 +326,7 @@ public class GUIMain extends JFrame implements ActionListener {
 		panelSettings.add(chckbxDismissErrorsAutomatically,
 				gbc_chckbxDissmissErrorsAutomatically);
 
-		//Strut
+		// Strut
 		Component verticalStrut = Box.createVerticalStrut(20);
 		GridBagConstraints gbc_verticalStrut = new GridBagConstraints();
 		gbc_verticalStrut.insets = new Insets(0, 0, 5, 5);
@@ -331,23 +343,23 @@ public class GUIMain extends JFrame implements ActionListener {
 		gbc_lblAuthoritiesToTest.gridy = 13;
 		panelSettings.add(lblAuthoritiesToTest, gbc_lblAuthoritiesToTest);
 
-		//Scenarios Label
+		// Scenarios Label
 		GridBagConstraints gbc_lblScenarios = new GridBagConstraints();
 		gbc_lblScenarios.insets = new Insets(0, 0, 5, 5);
 		gbc_lblScenarios.gridx = 6;
 		gbc_lblScenarios.gridy = 13;
 		panelSettings.add(lblScenarios, gbc_lblScenarios);
 
-		//Default Authority Checkbox
-		chckbxDefault = new JCheckBox("Default",authDefault);
+		// Default Authority Checkbox
+		chckbxDefault = new JCheckBox("Default", authDefault);
 		GridBagConstraints gbc_chckbxDefault = new GridBagConstraints();
 		gbc_chckbxDefault.anchor = GridBagConstraints.WEST;
 		gbc_chckbxDefault.insets = new Insets(0, 0, 5, 5);
 		gbc_chckbxDefault.gridx = 3;
 		gbc_chckbxDefault.gridy = 14;
 		panelSettings.add(chckbxDefault, gbc_chckbxDefault);
-		
-		//Help Authority Checkbox
+
+		// Help Authority Checkbox
 		chckbxMediahelp = new JCheckBox("Help", authHelp);
 		GridBagConstraints gbc_chckbxMediahelp = new GridBagConstraints();
 		gbc_chckbxMediahelp.anchor = GridBagConstraints.WEST;
@@ -355,8 +367,8 @@ public class GUIMain extends JFrame implements ActionListener {
 		gbc_chckbxMediahelp.gridx = 4;
 		gbc_chckbxMediahelp.gridy = 14;
 		panelSettings.add(chckbxMediahelp, gbc_chckbxMediahelp);
-		
-		//Details Authority Checkbox
+
+		// Details Authority Checkbox
 		chckbxMediaDetails = new JCheckBox("Details", authDetails);
 		GridBagConstraints gbc_chkbxMediaDetails = new GridBagConstraints();
 		gbc_chkbxMediaDetails.anchor = GridBagConstraints.WEST;
@@ -365,17 +377,17 @@ public class GUIMain extends JFrame implements ActionListener {
 		gbc_chkbxMediaDetails.gridy = 15;
 		panelSettings.add(chckbxMediaDetails, gbc_chkbxMediaDetails);
 
-		//Playback Authority Checkbox
-		chckbxMediaPlayback = new JCheckBox("Playback",authPlayback);
+		// Playback Authority Checkbox
+		chckbxMediaPlayback = new JCheckBox("Playback", authPlayback);
 		GridBagConstraints gbc_chkbxMediaPlayback = new GridBagConstraints();
 		gbc_chkbxMediaPlayback.anchor = GridBagConstraints.WEST;
 		gbc_chkbxMediaPlayback.insets = new Insets(0, 0, 5, 5);
 		gbc_chkbxMediaPlayback.gridx = 4;
 		gbc_chkbxMediaPlayback.gridy = 15;
 		panelSettings.add(chckbxMediaPlayback, gbc_chkbxMediaPlayback);
-		
-		//Settings Authority Checkbox
-		chckbxSettings = new JCheckBox("Settings",authSettings);
+
+		// Settings Authority Checkbox
+		chckbxSettings = new JCheckBox("Settings", authSettings);
 		GridBagConstraints gbc_chckbxSettings = new GridBagConstraints();
 		gbc_chckbxSettings.anchor = GridBagConstraints.WEST;
 		gbc_chckbxSettings.insets = new Insets(0, 0, 5, 5);
@@ -383,15 +395,15 @@ public class GUIMain extends JFrame implements ActionListener {
 		gbc_chckbxSettings.gridy = 16;
 		panelSettings.add(chckbxSettings, gbc_chckbxSettings);
 
-		//Search Authority Checkbox
-		chckbxSearch = new JCheckBox("Search",authSearch);
+		// Search Authority Checkbox
+		chckbxSearch = new JCheckBox("Search", authSearch);
 		GridBagConstraints gbc_chckbxSearch = new GridBagConstraints();
 		gbc_chckbxSearch.anchor = GridBagConstraints.WEST;
 		gbc_chckbxSearch.insets = new Insets(0, 0, 5, 5);
 		gbc_chckbxSearch.gridx = 4;
 		gbc_chckbxSearch.gridy = 16;
 		panelSettings.add(chckbxSearch, gbc_chckbxSearch);
-		
+
 		// Run All Tests
 		testGroup.add(rdbtnAll);
 		rdbtnAll.setSelected(scenario.equals("all"));
@@ -402,7 +414,7 @@ public class GUIMain extends JFrame implements ActionListener {
 		gbc_rdbtnAll.gridy = 14;
 		panelSettings.add(rdbtnAll, gbc_rdbtnAll);
 
-		//Run Only Valid Tests
+		// Run Only Valid Tests
 		testGroup.add(rdbtnValidOnly);
 		rdbtnValidOnly.setSelected(scenario.equals("valid"));
 		GridBagConstraints gbc_rdbtnValidOnly = new GridBagConstraints();
@@ -412,7 +424,7 @@ public class GUIMain extends JFrame implements ActionListener {
 		gbc_rdbtnValidOnly.gridy = 15;
 		panelSettings.add(rdbtnValidOnly, gbc_rdbtnValidOnly);
 
-		//Run Invalid only Tests
+		// Run Invalid only Tests
 		testGroup.add(rdbtnInvalidOnly);
 		rdbtnInvalidOnly.setSelected(scenario.equals("inval"));
 		GridBagConstraints gbc_rdbtnInvalidOnly = new GridBagConstraints();
@@ -421,8 +433,8 @@ public class GUIMain extends JFrame implements ActionListener {
 		gbc_rdbtnInvalidOnly.gridx = 6;
 		gbc_rdbtnInvalidOnly.gridy = 16;
 		panelSettings.add(rdbtnInvalidOnly, gbc_rdbtnInvalidOnly);
-		
-		//Strut
+
+		// Strut
 		Component horizontalStrut_2 = Box.createHorizontalStrut(20);
 		GridBagConstraints gbc_horizontalStrut_2 = new GridBagConstraints();
 		gbc_horizontalStrut_2.gridwidth = 3;
@@ -434,13 +446,13 @@ public class GUIMain extends JFrame implements ActionListener {
 		gbc_btnSave.insets = new Insets(0, 0, 5, 5);
 		gbc_btnSave.anchor = GridBagConstraints.SOUTHEAST;
 
-		//Save Config
+		// Save Config
 		gbc_btnSave.gridx = 10;
 		gbc_btnSave.gridy = 15;
 		panelSettings.add(btnSave, gbc_btnSave);
 		btnSave.addActionListener(this);
-		
-		//Strut
+
+		// Strut
 		Component horizontalStrut_4 = Box.createHorizontalStrut(20);
 		GridBagConstraints gbc_horizontalStrut_4 = new GridBagConstraints();
 		gbc_horizontalStrut_4.insets = new Insets(0, 0, 5, 5);
@@ -448,7 +460,7 @@ public class GUIMain extends JFrame implements ActionListener {
 		gbc_horizontalStrut_4.gridy = 16;
 		panelSettings.add(horizontalStrut_4, gbc_horizontalStrut_4);
 
-		//Strut
+		// Strut
 		Component horizontalStrut_3 = Box.createHorizontalStrut(20);
 		GridBagConstraints gbc_horizontalStrut_3 = new GridBagConstraints();
 		gbc_horizontalStrut_3.insets = new Insets(0, 0, 5, 5);
@@ -456,7 +468,7 @@ public class GUIMain extends JFrame implements ActionListener {
 		gbc_horizontalStrut_3.gridy = 16;
 		panelSettings.add(horizontalStrut_3, gbc_horizontalStrut_3);
 
-		//Run the Test
+		// Run the Test
 		GridBagConstraints gbc_btnRun = new GridBagConstraints();
 		gbc_btnRun.insets = new Insets(0, 0, 5, 5);
 		gbc_btnRun.gridx = 10;
@@ -466,7 +478,7 @@ public class GUIMain extends JFrame implements ActionListener {
 
 		getContentPane().add(panelSettings);
 
-		//Strut
+		// Strut
 		Component verticalStrut_2 = Box.createVerticalStrut(20);
 		GridBagConstraints gbc_verticalStrut_2 = new GridBagConstraints();
 		gbc_verticalStrut_2.gridwidth = 2;
@@ -477,12 +489,14 @@ public class GUIMain extends JFrame implements ActionListener {
 	}
 
 	private void runFrame() throws Exception {
-		RunFrame testProces = new RunFrame();
-		getContentPane().add(testProces);
-		panelSettings.setVisible(false);
+		// FormLinks newLinks = new FormLinks();
+		@SuppressWarnings("unused")
+		RunFrame frame = new RunFrame(kill);
+		setVisible(false);
 	}
 
 	private void saveData() throws FileNotFoundException {
+		retriveData();
 		param.setKill(kill);
 		param.setIp(ip);
 		param.setTitleID(titleID);
@@ -519,34 +533,51 @@ public class GUIMain extends JFrame implements ActionListener {
 		authHelp = chckbxMediahelp.isSelected();
 		authPlayback = chckbxMediaPlayback.isSelected();
 		authSearch = chckbxSearch.isSelected();
-		
-		if (rdbtnAll.isSelected()){
+
+		if (rdbtnAll.isSelected()) {
 			scenario = "all";
-		} else if (rdbtnValidOnly.isSelected()){
+		} else if (rdbtnValidOnly.isSelected()) {
 			scenario = "valid";
 		} else
 			scenario = "inval";
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
-		if ("Save".equalsIgnoreCase(e.getActionCommand())) {
-			retriveData();
-			try {
-				saveData();
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+		try {
+			saveData();
+		} catch (FileNotFoundException e2) {
+			e2.printStackTrace();
 		}
 
 		if ("RUN!".equalsIgnoreCase(e.getActionCommand())) {
-			try {
-				saveData();
-				runFrame();
-			} catch (Exception e1) {
-				e1.printStackTrace();
+			if (ip.equalsIgnoreCase(null) || ip.equalsIgnoreCase("")) {
+				lblError.setText(ERR_IP);
+			} else if (titleID.equalsIgnoreCase(null) || titleID.equals("")) {
+				lblError.setText(ERR_TITLE);
+			} else if (tvSeriesID.equalsIgnoreCase("")
+					&& tvEpisodeID.equalsIgnoreCase("")
+					&& movieID.equalsIgnoreCase("")) {
+				lblError.setText(ERR_MEDIA_ID);
+			} else if (tvSeriesID.equalsIgnoreCase(null)
+					&& tvEpisodeID.equalsIgnoreCase(null)
+					&& movieID.equalsIgnoreCase(null)) {
+				lblError.setText(ERR_MEDIA_ID);
+			} else if (authDefault == false && authDetails == false
+					&& authSettings == false && authHelp == false
+					&& authPlayback == false && authSearch == false) {
+				lblError.setText(ERR_AUTH);
+			} else if (kill == true && pacadgeID.equalsIgnoreCase("")) {
+				lblError.setText(ERR_PACK);
+			} else if (kill == true && pacadgeID.equalsIgnoreCase(null)) {
+				lblError.setText(ERR_PACK);
+			} else {
+				try {
+					FormLinks newLinks = new FormLinks(titleID, tvSeriesID, tvEpisodeID, movieID, scenario, authDefault, authDetails, authSettings, authHelp, authPlayback, authSearch);
+//					runFrame();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		}
 	}

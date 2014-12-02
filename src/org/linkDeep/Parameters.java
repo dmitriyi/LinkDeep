@@ -34,93 +34,77 @@ public class Parameters {
 		return kill;
 	}
 
-
 	public void setKill(boolean kill) {
 		this.kill = kill;
 	}
-
 
 	public String getIp() {
 		return ip;
 	}
 
-
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-
 
 	public String getTitleID() {
 		return titleID;
 	}
 
-
 	public void setTitleID(String titleID) {
 		this.titleID = titleID;
 	}
-
 
 	public String getTvSeriesID() {
 		return tvSeriesID;
 	}
 
-
 	public void setTvSeriesID(String tvSeriesID) {
 		this.tvSeriesID = tvSeriesID;
 	}
-
 
 	public String getTvEpisodeID() {
 		return tvEpisodeID;
 	}
 
-
 	public void setTvEpisodeID(String tvEpisodeID) {
 		this.tvEpisodeID = tvEpisodeID;
 	}
-
 
 	public String getMovieID() {
 		return movieID;
 	}
 
-
 	public void setMovieID(String movieID) {
 		this.movieID = movieID;
 	}
-
 
 	public String getPacadgeID() {
 		return pacadgeID;
 	}
 
-
 	public void setPacadgeID(String pacadgeID) {
 		this.pacadgeID = pacadgeID;
 	}
-
 
 	public String getScreenShotPath() {
 		return screenShotPath;
 	}
 
-
 	public void setScreenShotPath(String screenShotPath) {
 		this.screenShotPath = screenShotPath;
 	}
-
 
 	public boolean isAutoDismiss() {
 		return autoDismiss;
 	}
 
-
 	public void setAutoDismiss(boolean autoDismiss) {
 		this.autoDismiss = autoDismiss;
 	}
 
-
 	public String getScenario() {
+		if (scenario == "" || scenario == null)
+			scenario = "all";
 		return scenario;
 	}
 
